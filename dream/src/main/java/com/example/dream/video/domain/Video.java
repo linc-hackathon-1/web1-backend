@@ -58,9 +58,12 @@ public class Video {
         }
     }
 
-
     public Video clearWeekLikesCount() {
         this.weekLikesCount=0;
         return this;
+    }
+
+    public int getWeekLikesCount() {
+        return weekLikesCount;
     }
 }

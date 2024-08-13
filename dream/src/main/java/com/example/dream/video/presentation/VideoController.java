@@ -3,6 +3,7 @@ package com.example.dream.video.presentation;
 import com.example.dream.video.application.VideoService;
 import com.example.dream.video.dto.request.VideoUploadRequest;
 import com.example.dream.video.dto.response.VideoDetailResponse;
+import com.example.dream.video.dto.response.VideoListResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,13 @@ public class VideoController {
     @Operation(description = "영상 정보를 불러온다.")
     public ResponseEntity<VideoDetailResponse> getRandomVideo() {
         VideoDetailResponse response = videoService.getVideoDetail("random");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping ("/list/{tag}")
+    @Operation(description = "영상 정보를 불러온다.")
+    public ResponseEntity<VideoListResponse> getRandomVideo(@PathVariable("tag") String tag, @RequestParam int page) {
+        VideoListResponse response = videoService.getVideoPreviewList(tag, page);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
