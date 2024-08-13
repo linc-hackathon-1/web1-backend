@@ -2,7 +2,6 @@ package com.example.dream.province.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,15 +20,13 @@ public class Province {
     private String image;
     @Column(length = 2048)
     private String intro;
-    private int subscriberCounts;
+    private int totalLikesCounts;
 
-    @Builder
+    public void addLikesCount() {
+        this.totalLikesCounts++;
+    }
 
-    public Province(Long id, String name, String image, String intro, int subscriberCounts) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.intro = intro;
-        this.subscriberCounts = subscriberCounts;
+    public void subLikesCount() {
+        this.totalLikesCounts--;
     }
 }
