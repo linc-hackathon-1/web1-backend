@@ -1,11 +1,11 @@
 package com.example.dream.video.dto.response;
 
-import com.example.dream.province.domain.Province;
+import com.example.dream.province.dto.ProvinceShortResponse;
 import com.example.dream.video.domain.Video;
 
 public record VideoDetailResponse(
         String id,
-        Province province,
+        ProvinceShortResponse province,
         String title,
         String url,
         int likesCount,
@@ -15,7 +15,7 @@ public record VideoDetailResponse(
     public static VideoDetailResponse of(Video video){
         return new VideoDetailResponse(
                 video.getId(),
-                video.getProvince(),
+                ProvinceShortResponse.of(video.getProvince()),
                 video.getTitle(),
                 video.getUrl(),
                 video.getLikesCount(),

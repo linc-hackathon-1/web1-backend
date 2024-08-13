@@ -29,7 +29,7 @@ public class VideoController {
 
     @GetMapping ("/{videoId}")
     @Operation(description = "영상 정보를 불러온다.")
-    public ResponseEntity<VideoDetailResponse> getVideo(@PathVariable("videoId") Long videoId) {
+    public ResponseEntity<VideoDetailResponse> getVideo(@PathVariable("videoId") String videoId) {
         VideoDetailResponse response = videoService.getVideoDetail(videoId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

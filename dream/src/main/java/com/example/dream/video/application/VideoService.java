@@ -27,7 +27,9 @@ public class VideoService {
         videoRepository.save(video);
     }
 
-    public VideoDetailResponse getVideoDetail(Long videoId) {
-        return null;
+    public VideoDetailResponse getVideoDetail(String videoId) {
+        Video video = videoRepository.findById(videoId)
+                .orElseThrow(() -> new IllegalArgumentException("no video"));
+        return VideoDetailResponse.of(video);
     }
 }
