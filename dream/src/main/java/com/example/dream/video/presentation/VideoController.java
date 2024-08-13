@@ -33,4 +33,6 @@ public class VideoController {
         VideoDetailResponse response = videoService.getVideoDetail(videoId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
 }

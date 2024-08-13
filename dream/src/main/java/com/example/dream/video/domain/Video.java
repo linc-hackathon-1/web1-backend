@@ -36,4 +36,12 @@ public class Video {
         String[] parts = url.split("/");
         return parts[parts.length - 1];
     }
+
+    public void subLikesCount() {
+        this.likesCount--;
+    }
+
+    public void addLikesCount() {
+        this.likesCount++;
+    }
 }
