@@ -1,6 +1,6 @@
 package com.example.dream.user.repository;
 
-import com.sundaegukbap.banchango.user.domain.User;
+import com.example.dream.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
