@@ -1,6 +1,6 @@
 package com.example.dream.video.dto.response;
 
-import com.example.dream.province.dto.ProvinceShortResponse;
+import com.example.dream.province.dto.response.ProvinceShortResponse;
 import com.example.dream.video.domain.Video;
 
 import java.util.List;

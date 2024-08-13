@@ -21,6 +21,7 @@ public class Province {
     @Column(length = 2048)
     private String intro;
     private int totalLikesCounts;
+    private int weekLikesCounts;
 
     public void addLikesCount() {
         this.totalLikesCounts++;

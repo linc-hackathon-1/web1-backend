@@ -1,4 +1,4 @@
-package com.example.dream.province.dto;
+package com.example.dream.province.dto.response;
 
 import com.example.dream.province.domain.Province;
 
