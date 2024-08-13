@@ -3,6 +3,8 @@ package com.example.dream.video.dto.response;
 import com.example.dream.province.dto.ProvinceShortResponse;
 import com.example.dream.video.domain.Video;
 
+import java.util.List;
+
 public record VideoDetailResponse(
         String id,
         ProvinceShortResponse province,
@@ -10,9 +12,10 @@ public record VideoDetailResponse(
         String url,
         int likesCount,
         int repliesCount,
-        String description
+        String description,
+        List<String> tags
 ) {
-    public static VideoDetailResponse of(Video video){
+    public static VideoDetailResponse of(Video video, List<String> tags){
         return new VideoDetailResponse(
                 video.getId(),
                 ProvinceShortResponse.of(video.getProvince()),
@@ -20,7 +23,8 @@ public record VideoDetailResponse(
                 video.getUrl(),
                 video.getLikesCount(),
                 video.getRepliesCount(),
-                video.getDescription()
+                video.getDescription(),
+                tags
         );
     }
 }
