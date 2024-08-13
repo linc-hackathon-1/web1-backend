@@ -33,6 +33,10 @@ public class VideoController {
         VideoDetailResponse response = videoService.getVideoDetail(videoId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-
+    @GetMapping ("/next-video")
+    @Operation(description = "영상 정보를 불러온다.")
+    public ResponseEntity<VideoDetailResponse> getRandomVideo() {
+        VideoDetailResponse response = videoService.getVideoDetail("random");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
