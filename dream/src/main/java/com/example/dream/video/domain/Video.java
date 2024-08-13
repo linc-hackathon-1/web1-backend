@@ -1,5 +1,6 @@
 package com.example.dream.video.domain;
 
+import com.example.dream.province.domain.Province;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,6 +14,9 @@ public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="province_id")
+    private Province province;
     private String title;
     private String url;
     private int likesCount;
@@ -20,12 +24,14 @@ public class Video {
     private String description;
 
     @Builder
-    public Video(Long id, String title, String url, int likesCount, int repliesCount, String description) {
-        this.id = id;
+    public Video(Province province, String title, String url, String description) {
+        this.id = null;
+        this.province = province;
         this.title = title;
         this.url = url;
-        this.likesCount = likesCount;
-        this.repliesCount = repliesCount;
+        this.likesCount=0;
+        this.repliesCount=0;
         this.description = description;
     }
+
 }
