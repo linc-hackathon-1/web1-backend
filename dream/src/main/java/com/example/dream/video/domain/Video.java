@@ -19,6 +19,7 @@ public class Video {
     private String title;
     private String url;
     private int likesCount;
+    private int weekLikesCount;
     private int repliesCount;
     private String description;
 
@@ -39,9 +40,13 @@ public class Video {
 
     public void subLikesCount() {
         this.likesCount--;
+        if(weekLikesCount>0){
+            this.weekLikesCount--;
+        }
     }
 
     public void addLikesCount() {
         this.likesCount++;
+        this.weekLikesCount++;
     }
 }

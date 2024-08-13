@@ -34,29 +34,41 @@ public class LikeService {
 
         Optional<Like> like = likeRepository.findByUserAndVideo(user, video);
         if (like.isPresent()) {
-            video.subLikesCount();
-            videoRepository.save(video);
-            likeRepository.delete(like.get());
-
-            Province province = video.getProvince();
-            province.subLikesCount();
-            provinceRepository.save(province);
-
-            return "remove";
+            subVideoLikes(video, like);
+            subProvinceLikes(video);
+            return "remove like";
         } else {
-            video.addLikesCount();
-            videoRepository.save(video);
-            Like newLike= Like.builder()
-                    .user(user)
-                    .video(video)
-                    .build();
-            likeRepository.save(newLike);
-
-            Province province = video.getProvince();
-            province.addLikesCount();
-            provinceRepository.save(province);
-
-            return "add";
+            addVideoLikes(video, user);
+            addProvinceLikes(video);
+            return "add like";
         }
+    }
+
+    private void addProvinceLikes(Video video) {
+        Province province = video.getProvince();
+        province.addLikesCount();
+        provinceRepository.save(province);
+    }
+
+    private void addVideoLikes(Video video, User user) {
+        video.addLikesCount();
+        videoRepository.save(video);
+        Like newLike= Like.builder()
+                .user(user)
+                .video(video)
+                .build();
+        likeRepository.save(newLike);
+    }
+
+    private void subProvinceLikes(Video video) {
+        Province province = video.getProvince();
+        province.subLikesCount();
+        provinceRepository.save(province);
+    }
+
+    private void subVideoLikes(Video video, Optional<Like> like) {
+        video.subLikesCount();
+        videoRepository.save(video);
+        likeRepository.delete(like.get());
     }
 }
