@@ -41,20 +41,19 @@ public class VideoService {
     }
 
     public VideoDetailResponse getVideoDetail(String videoId) {
-        Video video;
-        if(videoId.equals("random")){
-            video = videoRepository.findOneByRandom();
-        }
-        else{
-            video = videoRepository.findById(videoId)
+        Video video = videoRepository.findById(videoId)
                     .orElseThrow(() -> new IllegalArgumentException("no video"));
-        }
         List<VideoTag> videoTags = videoTagRepository.findVideoTagsByVideo(video);
         List<String> tags = videoTags.stream()
                 .map(tag -> tag.getTag())
                 .collect(Collectors.toList());
 
         return VideoDetailResponse.of(video, tags);
+    }
+
+    public String getRandomVideoId(){
+        Video video = videoRepository.findOneByRandom();
+        return video.getId();
     }
 
     public void clearWeekLikesCount() {

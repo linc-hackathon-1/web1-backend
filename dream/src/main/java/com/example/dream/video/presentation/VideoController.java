@@ -36,9 +36,9 @@ public class VideoController {
     }
     @GetMapping ("/next-video")
     @Operation(description = "영상 정보를 불러온다.")
-    public ResponseEntity<String> getRandomVideo() {
-        VideoDetailResponse response = videoService.getVideoDetail("random");
-        return new ResponseEntity<>(response.id(), HttpStatus.OK);
+    public ResponseEntity<String> getRandomVideoId() {
+        String response = videoService.getRandomVideoId();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping ("/list/{tag}")
