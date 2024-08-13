@@ -40,13 +40,27 @@ public class Video {
 
     public void subLikesCount() {
         this.likesCount--;
+        subWeekLikesCount();
+    }
+
+    public void addLikesCount() {
+        this.likesCount++;
+        addWeekLikesCount();
+    }
+
+    private void addWeekLikesCount() {
+        this.weekLikesCount++;
+    }
+
+    private void subWeekLikesCount() {
         if(weekLikesCount>0){
             this.weekLikesCount--;
         }
     }
 
-    public void addLikesCount() {
-        this.likesCount++;
-        this.weekLikesCount++;
+
+    public Video clearWeekLikesCount() {
+        this.weekLikesCount=0;
+        return this;
     }
 }

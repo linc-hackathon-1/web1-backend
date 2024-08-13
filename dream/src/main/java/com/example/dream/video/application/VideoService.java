@@ -8,6 +8,9 @@ import com.example.dream.video.dto.response.VideoDetailResponse;
 import com.example.dream.video.repository.VideoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class VideoService {
     private final VideoRepository videoRepository;
@@ -31,5 +34,13 @@ public class VideoService {
         Video video = videoRepository.findById(videoId)
                 .orElseThrow(() -> new IllegalArgumentException("no video"));
         return VideoDetailResponse.of(video);
+    }
+
+    public void clearWeekLikesCount() {
+        List<Video> all = videoRepository.findAll();
+        List<Video> processedVideos = all.stream()
+                .map(video -> video.clearWeekLikesCount())
+                .collect(Collectors.toList());
+        videoRepository.saveAll(processedVideos);
     }
 }
