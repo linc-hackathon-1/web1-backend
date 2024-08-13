@@ -16,8 +16,11 @@ public class Province {
     @NotNull
     @Column(length = 16)
     private String name;
+
     @Column(length = 512)
-    private String image;
+    private String thumbnail;
+    @Column(length = 512)
+    private String profileImage;
     @Column(length = 2048)
     private String intro;
     private int totalLikesCounts;

@@ -2,6 +2,7 @@ package com.example.dream.province.application;
 
 import com.example.dream.province.domain.Province;
 import com.example.dream.province.dto.ProvincePreviewDto;
+import com.example.dream.province.dto.response.ProvinceDetailResponse;
 import com.example.dream.province.dto.response.ProvinceListResponse;
 import com.example.dream.province.repository.ProvinceRepository;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,11 @@ public class ProvinceService {
         }
 
         return ProvinceListResponse.of(provincePreviewDtos);
+    }
+
+    public ProvinceDetailResponse getProvinceDetail(Long provinceId) {
+        Province province = provinceRepository.findById(provinceId)
+                .orElseThrow(() -> new IllegalArgumentException("no province"));
+        return ProvinceDetailResponse.of(province);
     }
 }
