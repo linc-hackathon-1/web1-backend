@@ -4,6 +4,7 @@ import com.example.dream.province.domain.Province;
 import com.example.dream.province.repository.ProvinceRepository;
 import com.example.dream.video.domain.Video;
 import com.example.dream.video.dto.request.VideoUploadRequest;
+import com.example.dream.video.dto.response.VideoDetailResponse;
 import com.example.dream.video.repository.VideoRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,9 @@ public class VideoService {
         Video video = request.toEntity(province);
 
         videoRepository.save(video);
+    }
+
+    public VideoDetailResponse getVideoDetail(Long videoId) {
+        return null;
     }
 }
