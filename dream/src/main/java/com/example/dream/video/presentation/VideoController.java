@@ -2,6 +2,7 @@ package com.example.dream.video.presentation;
 
 import com.example.dream.video.application.VideoService;
 import com.example.dream.video.dto.request.VideoUploadRequest;
+import com.example.dream.video.dto.response.VideoDetailResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,16 @@ public class VideoController {
 
     @PostMapping("/{provinceId}")
     @Operation(description = "영상을 추가한다.")
-    public ResponseEntity<String> insertIngredient(@PathVariable("provinceId") Long provinceId,
+    public ResponseEntity<String> uploadVideo(@PathVariable("provinceId") Long provinceId,
                                                    @RequestBody VideoUploadRequest request) {
         videoService.uploadVideo(provinceId, request);
         return new ResponseEntity<>("success upload video", HttpStatus.OK);
+    }
+
+    @GetMapping ("/{videoId}")
+    @Operation(description = "영상 정보를 불러온다.")
+    public ResponseEntity<VideoDetailResponse> getVideo(@PathVariable("videoId") Long videoId) {
+        VideoDetailResponse response = videoService.getVideoDetail(videoId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
