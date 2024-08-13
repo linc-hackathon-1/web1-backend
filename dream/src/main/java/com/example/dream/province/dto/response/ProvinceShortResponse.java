@@ -9,7 +9,7 @@ public record ProvinceShortResponse(
     public static ProvinceShortResponse of(Province province){
         return new ProvinceShortResponse(
                 province.getName(),
-                province.getImage()
+                province.getProfileImage()
         );
     }
 }

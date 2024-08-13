@@ -47,4 +47,11 @@ public class VideoController {
         VideoListResponse response = videoService.getVideoPreviewList(tag, page);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping ("/province")
+    @Operation(description = "지역 채널에 속한 영상들을 불러온다.")
+    public ResponseEntity<VideoListResponse> getProvinceVideos(@RequestParam Long provinceId, @RequestParam int page) {
+        VideoListResponse response = videoService.getProvinceVideoPreviews(provinceId, page);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

@@ -27,7 +27,7 @@ public class ProvinceController {
     }
 
     @GetMapping ("/{provinceId}")
-    @Operation(description = "지역 정보를 좋아요 내림차순으로 불러온다.")
+    @Operation(description = "지역 상세 정보를 불러온다.")
     public ResponseEntity<ProvinceDetailResponse> getProvinceDetail(@PathVariable("provinceId") Long provinceId) {
         ProvinceDetailResponse response = provinceService.getProvinceDetail(provinceId);
         return new ResponseEntity<>(response, HttpStatus.OK);

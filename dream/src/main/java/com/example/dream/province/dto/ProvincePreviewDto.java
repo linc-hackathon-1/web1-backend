@@ -10,7 +10,7 @@ public record ProvincePreviewDto(
     public static ProvincePreviewDto fromWeekLikesProvince(Province province){
         return new ProvincePreviewDto(
                 province.getName(),
-                province.getImage(),
+                province.getProfileImage(),
                 province.getWeekLikesCounts()
         );
     }
@@ -18,7 +18,7 @@ public record ProvincePreviewDto(
     public static ProvincePreviewDto fromTotalLikesProvince(Province province){
         return new ProvincePreviewDto(
                 province.getName(),
-                province.getImage(),
+                province.getProfileImage(),
                 province.getTotalLikesCounts()
         );
     }

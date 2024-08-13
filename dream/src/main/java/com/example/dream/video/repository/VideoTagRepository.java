@@ -11,4 +11,5 @@ import java.util.List;
 public interface VideoTagRepository extends JpaRepository<VideoTag, Long> {
     List<VideoTag> findVideoTagsByVideo(Video video);
     List<VideoTag> findVideoTagsByTag(String tag);
+
 }

@@ -73,14 +73,28 @@ public class VideoService {
 
         //주간 좋아요 내림차순으로 정렬하고 잘라내서
         Collections.sort(videos, Comparator.comparingInt(Video::getWeekLikesCount).reversed());
-        int startIndex = 4*page;
-        int endIndex = Math.min(startIndex + 4, videos.size());
-        List<Video> partialVideos = videos.subList(startIndex, endIndex);
+        List<Video> partialVideos = resolvePartialVideos(page, videos);
 
         //미리보기 데이터로 변환하여 반환한다.
-        List<VideoPreviewDto> videoPreviewDtos = partialVideos.stream()
-                .map(VideoPreviewDto::of)
-                .collect(Collectors.toList());
+        List<VideoPreviewDto> videoPreviewDtos = VideoPreviewDto.of(partialVideos);
         return VideoListResponse.of(videoPreviewDtos);
+    }
+
+    public VideoListResponse getProvinceVideoPreviews(Long provinceId, int page) {
+        Province province = provinceRepository.findById(provinceId)
+                .orElseThrow(() -> new IllegalArgumentException("no province"));
+        List<Video> videos = videoRepository.findVideosByProvince(province);
+
+        List<Video> partialVideos = resolvePartialVideos(page, videos);
+
+        List<VideoPreviewDto> videoPreviewDtos = VideoPreviewDto.of(partialVideos);
+        return VideoListResponse.of(videoPreviewDtos);
+    }
+
+    private static List<Video> resolvePartialVideos(int page, List<Video> videos) {
+        int startIndex = 4* page;
+        int endIndex = Math.min(startIndex + 4, videos.size());
+        List<Video> partialVideos = videos.subList(startIndex, endIndex);
+        return partialVideos;
     }
 }
