@@ -17,9 +17,9 @@ public class Province {
     @Column(length = 16)
     private String name;
 
-    @Column(length = 512)
+    @Column(length = 2048)
     private String thumbnail;
-    @Column(length = 512)
+    @Column(length = 2048)
     private String profileImage;
     @Column(length = 2048)
     private String intro;
