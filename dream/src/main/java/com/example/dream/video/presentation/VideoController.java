@@ -43,7 +43,7 @@ public class VideoController {
 
     @GetMapping ("/list/{tag}")
     @Operation(description = "영상 정보를 불러온다.")
-    public ResponseEntity<VideoListResponse> getRandomVideo(@PathVariable("tag") String tag, @RequestParam int page) {
+    public ResponseEntity<VideoListResponse> getVideoList(@PathVariable("tag") String tag, @RequestParam int page) {
         VideoListResponse response = videoService.getVideoPreviewList(tag, page);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

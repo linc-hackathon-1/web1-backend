@@ -7,13 +7,15 @@ import java.util.stream.Collectors;
 
 public record VideoPreviewDto(
         String id,
-        String name,
+        String provinceName,
+        String videoName,
         String url,
         int likes
 ) {
     public static VideoPreviewDto of(Video video){
         return new VideoPreviewDto(
                 video.getId(),
+                video.getProvince().getName(),
                 video.getTitle(),
                 video.getUrl(),
                 video.getLikesCount()
